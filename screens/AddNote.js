@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const AddNoteScreen = () => {
+const AddNote = () => {
   return (
     <View>
-      <Text>AddNoteScreen</Text>
+      <Text>AddNote</Text>
     </View>
   )
 }
 
-export default AddNoteScreen
+export default AddNote
 
 const styles = StyleSheet.create({})
