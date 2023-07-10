@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ScreenType } from "./constants/constants";
 import AllNotesScreen from "./screens/AllNotesScreen";
 import AddNote from "./screens/AddNote";
+import BackButton from "./components/BackButton";
 
 export default function App() {
   const [screen, setScreen] = useState(ScreenType.home);
@@ -28,6 +29,7 @@ export default function App() {
     <View style={styles.container}>
       <Header />
       <StatusBar style="auto" />
+      <BackButton onButtonClick={(data)=>setScreen(data)} />
       {content}
     </View>
   );
