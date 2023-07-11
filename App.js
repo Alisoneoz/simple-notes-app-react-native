@@ -10,26 +10,32 @@ import BackButton from "./components/BackButton";
 
 export default function App() {
   const [screen, setScreen] = useState(ScreenType.home);
+  const [notes, setNotes] = useState([])
+  const updateScreen = (data) => {
+
+      setScreen(data)
+  }
   let content;
   
   if (screen === ScreenType.addNote) {
-    content = <AddNote />;
+    content = <AddNote 
+    onExit={updateScreen}
+    onSave={(data)=>setNotes([...notes, {id:Date.now(), note:data}])}/>;
   } else if (screen === ScreenType.allNotes) {
-    content = <AllNotesScreen />;
+    content = <AllNotesScreen notes={notes}/>;
   } else if (screen === ScreenType.home) {
     content = (
       <HomeScreen
-        onExit={(data) => {
-          setScreen(data);
-        }}
+        onExit={updateScreen}
       />
     );
   }
+  console.log(notes)
   return (
     <View style={styles.container}>
       <Header />
       <StatusBar style="auto" />
-      <BackButton onButtonClick={(data)=>setScreen(data)} />
+      {screen!==ScreenType.home && <BackButton onButtonClick={updateScreen} />}
       {content}
     </View>
   );

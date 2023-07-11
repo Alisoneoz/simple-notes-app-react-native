@@ -1,13 +1,17 @@
 import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import React, { useState } from "react";
+import { ScreenType } from "../constants/constants";
 
-const AddNote = () => {
+const AddNote = ({ onSave, onExit }) => {
   const [enteredText, setEnteredText] = useState("");
   const handleChange = (val) => {
     setEnteredText(val);
   };
   const handleClick = () => {
-    console.log(enteredText);
+    if(enteredText.trim().length > 0){
+      onSave(enteredText)
+      onExit(ScreenType.allNotes )
+    }
   };
   return (
     <View style={styles.container}>
@@ -16,7 +20,7 @@ const AddNote = () => {
         <View>
           <TextInput onChangeText={handleChange} style={styles.input} />
         </View>
-        <Button onPress={handleClick} title="Add" />
+        <Button onPress={handleClick} title="Add" color={"green"}/>
       </View>
     </View>
   );
